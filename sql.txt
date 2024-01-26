@@ -1,0 +1,46 @@
+-- Criação tabela Produtos --
+
+CREATE TABLE `Estoque_prod`.`produtos` ( `id` INT NOT NULL AUTO_INCREMENT , 
+`codigo` VARCHAR(5) NOT NULL , 
+`nome` VARCHAR(40) NOT NULL , 
+`lead_time` INT(3) NULL , 
+`qtde` INT(4) NULL , 
+`funcionario` VARCHAR(30) NOT NULL , 
+`descricao` VARCHAR(80) NULL , 
+`frequencia` ENUM('semanal','mensal','semestral','anual','') NULL DEFAULT 'semanal' , 
+`data` DATE NOT NULL , 
+`unidade` ENUM('un','mg','g','kg','cm','m','ml','l') NOT NULL DEFAULT 'un' , 
+`valor_venda` DOUBLE NULL , 
+`valor_producao` DOUBLE NULL , 
+`maximo` INT NOT NULL , 
+`minimo` INT NOT NULL , 
+`observacao` TEXT NULL , 
+PRIMARY KEY (`id`)) ENGINE = InnoDB; 
+
+
+
+-- Criação tabela Produtos_Movimentações --
+
+CREATE TABLE `Estoque_prod`.`produtos_movimentacoes` ( `id` INT NOT NULL AUTO_INCREMENT , 
+`produto_id` INT NOT NULL , 
+`tipo` ENUM('entrada','saida','troca','devolucao','outros') NOT NULL DEFAULT 
+'entrada' , `responsavel` VARCHAR(30) NOT NULL , 
+`cliente` VARCHAR(30) NULL , 
+`qtde` INT(4) NOT NULL ,
+ `data` DATE NOT NULL , 
+PRIMARY KEY (`id`)) ENGINE = InnoDB;
+
+
+
+-Adicionando chave estrangeira (id) de tabela produtos para tabela produtos_movimentações
+
+ALTER TABLE `produtos_movimentacoes` ADD CONSTRAINT `fk_produtos_movimentacoes_produtos` 
+FOREIGN KEY (`produto_id`) REFERENCES `produtos`(`id`) 
+ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- Ateração tabela produtos -
+
+ALTER TABLE `produtos` CHANGE `coddigo` `codigo` VARCHAR(5) NOT NULL;
+
+ALTER TABLE `produtos` CHANGE `frequencia` `frequencia` ENUM('diario','semanal','mensal','trimestral','semestral','anual') 
+CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL DEFAULT 'diario';
