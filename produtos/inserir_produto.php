@@ -24,11 +24,11 @@ $result = "INSERT INTO produtos (nome, codigo, lead_time, qtde, funcionario, des
 $resultado = mysqli_query($conexao, $result);
 
 if (mysqli_insert_id($conexao)) {
-    $_SESSION['msg'] = "<p style='color:green;'>Usuário cadastrado com sucesso!</p>";
-    header("Location: cad_usuario.php");
+    $_SESSION['msg'] = "<p style='color:green;'>Produto cadastrado com sucesso!</p>";
+    header("Location: cadastrar_produtos.php");
 } else {
-    $_SESSION['msg'] = "<p style='color:red;'>Usuário não foi cadastrado.</p>";
-    header("Location: cad_usuario.php");
+    $_SESSION['msg'] = "<p style='color:red;'>Não foi possível cadastrar ese produto.</p>";
+    header("Location: cadastrar_produtos.php");
 }
 
 ?> 

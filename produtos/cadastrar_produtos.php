@@ -12,8 +12,8 @@ session_start();
 </head>
 
 <body>
-    <a href="cad_usuario.php">Cadastrar</a><br>
-    <a href="index.php">Listar</a><br>
+    <!-- <a href="cadastrar_produtos.php">Cadastrar</a><br> -->
+    <a href="index.php">Menu</a><br>
     <h1>Cadastrar Produtos</h1>
     <?php
     if (isset($_SESSION['msg'])) {
@@ -21,7 +21,7 @@ session_start();
         unset($_SESSION['msg']);
     }
     ?>
-    <form method="POST" action="proc_cad_usuario.php">
+    <form method="POST" action="inserir_produto.php">
 
         <label>Nome:</label>
         <input type="text" name="nome" placeholder="Digite o nome completo"><br><br>
@@ -66,7 +66,7 @@ session_start();
             <option value="l">l</option>
         </select><br><br>
 
-        <labell>Valor Produção:</labell>
+        <label>Valor Produção:</label>
         <input type="text" id= "valor_producao" name="valor_producao" placeholder="Digite o valor do produto"><br><br>
 
         <label>Valor Venda:</label>
@@ -84,8 +84,8 @@ session_start();
         <input type="submit" value="Cadastrar">
     </form>
 
-    <script src="jquery-3.7.1.min.js"></script>
-    <script src="jquery.mask.js"></script>
+    <script src="/Estoque/js/jquery-3.7.1.min.js"></script>
+    <script src="/Estoque/js/jquery.mask.js"></script>
 
     <script>
         $('#valor_venda').mask("#.##0,00", {
