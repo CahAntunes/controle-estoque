@@ -2,6 +2,8 @@
 
 include_once("conexao.php");
 
+
+
 $filtro = isset($_GET['filtro']) ? $_GET['filtro'] : "";
 
 $sql = "select * from produtos where nome like '%$filtro%'order by nome";
@@ -15,10 +17,14 @@ $registro = mysqli_num_rows($consulta);
 <!DOCTYPE html>
 <html lang="pt-br">
 
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+
 <head>
     <meta charset="UTF-8">
     <title>Sistema de Cadastro de Produtos</title>
-    <!-- <link rel="stylesheet" href="estilo.css"> -->
+    
 </head>
 
 <body>
@@ -79,11 +85,11 @@ $registro = mysqli_num_rows($consulta);
                 print "Observações: $observacao<br><br>";
 
 
-                print "<a href='cadastrar_produtos.php?id=$id' class='btn-editar'>Editar</a>";
+                print "<a href='editar_produto.php?id=$id' class='btn-editar'>Editar</a>";
                 print "&nbsp;";
                 print "&nbsp;";
                 print "&nbsp;";
-                print "<a href='excluir.php?id=$id' class='btn-excluir' onclick='return confirmarExclusao(); '>Excluir</a>";
+                print "<a href='excluir.php?id=$id' class='btn-excluir'>Excluir</a>";
                 print "&nbsp;";
                 print "&nbsp;";
                 print "&nbsp;";

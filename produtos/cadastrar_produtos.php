@@ -5,6 +5,9 @@ session_start();
 <!DOCTYPE html>
 <html lang="pt-br">
 
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,12 +18,14 @@ session_start();
     <!-- <a href="cadastrar_produtos.php">Cadastrar</a><br> -->
     <a href="index.php">Menu</a><br>
     <h1>Cadastrar Produtos</h1>
+
     <?php
     if (isset($_SESSION['msg'])) {
         echo $_SESSION['msg'];
         unset($_SESSION['msg']);
     }
     ?>
+
     <form method="POST" action="inserir_produto.php">
 
         <label>Nome:</label>
@@ -67,10 +72,10 @@ session_start();
         </select><br><br>
 
         <label>Valor Produção:</label>
-        <input type="text" id= "valor_producao" name="valor_producao" placeholder="Digite o valor do produto"><br><br>
+        <input type="text" id="valor_producao" name="valor_producao" placeholder="Digite o valor do produto"><br><br>
 
         <label>Valor Venda:</label>
-        <input type="text" id= "valor_venda" name="valor_venda" placeholder="Digite o valor do produto"><br><br>
+        <input type="text" id="valor_venda" name="valor_venda" placeholder="Digite o valor do produto"><br><br>
 
         <label>Máximo</label>
         <input type="text" name="maximo" placeholder="Digite a qtde máxima de produto"><br><br>
