@@ -23,12 +23,11 @@ $sql = "UPDATE produtos SET nome='$nome', codigo='$codigo', lead_time='$lead_tim
 
 $atualizar = mysqli_query($conexao, $sql); 
 
-if (mysqli_affected_rows($conexao)) {
-    $_SESSION['msg'] = "<p style='color:green;'>Produto editado com sucesso!</p>";
-    header("Location: editar_produto.php");
+if ($atualizar) {
+    echo "<script>alert('Produto editado com sucesso!');";
+    echo "window.location.href = 'pesquisar_produtos.php';</script>";
 } else {
-    $_SESSION['msg'] = "<p style='color:red;'>Não foi possivel editar cadastro.</p>";
-    header("Location: editar_produto.php");
+    echo "<script>alert('Erro ao editar o produto');</script>";
 }
 
 ?> 
