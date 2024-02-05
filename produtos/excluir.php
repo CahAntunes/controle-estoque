@@ -1,6 +1,4 @@
-
 <?php
-session_start();
 include_once("conexao.php");
 
 if (isset($_GET['id'])) {
@@ -9,13 +7,15 @@ if (isset($_GET['id'])) {
     $sql = "DELETE FROM produtos WHERE id = $idProduto";
     $resultado = mysqli_query($conexao, $sql);
 
-    if (mysqli_affected_rows($conexao)) {
-        $_SESSION['msg'] = "<p style='color:green;'>Produto excluido com sucesso!</p>";
-        header("Location: editar_processa.php");
+    if ($resultado) {
+        echo "<script>alert('Produto excluído com sucesso!');";
+        echo "window.location.href = 'pesquisar_produtos.php';</script>";
     } else {
-        $_SESSION['msg'] = "<p style='color:red;'>Falha ao excluir produto.</p>";
-        header("Location: editar_processa.php");
+        echo "<script>alert('Erro ao excluir o produto');</script>";
     }
-}
 
+
+    mysqli_close($conexao);
+
+}
 ?>
