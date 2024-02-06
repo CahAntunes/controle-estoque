@@ -41,7 +41,7 @@
       <div class="card-body">
         <h5 class="card-title">Movimentação</h5>
         <p class="card-text">Opção para movimentação de entrada e saída no estoque.</p>
-        <a href="#" class="btn btn-primary">Movimentação</a>
+        <a href="movimentacoes/add_movimentacoes.php"  class="btn btn-primary">Movimentação</a>
       </div>
     </div>
   </div>

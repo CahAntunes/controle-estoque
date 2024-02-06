@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-include_once("conexao.php");
+include_once("../conexao.php");
 
 $id = filter_input(INPUT_POST, 'id');
 $nome = filter_input(INPUT_POST, 'nome');
@@ -19,6 +19,7 @@ $maximo = filter_input(INPUT_POST, 'maximo');
 $minimo = filter_input(INPUT_POST, 'minimo');
 $observacao = filter_input(INPUT_POST, 'observacao');
 
+
 $sql = "UPDATE produtos SET nome='$nome', codigo='$codigo', lead_time='$lead_time', qtde='$qtde', funcionario='$funcionario', descricao='$descricao', frequencia='$frequencia', data='$data', unidade='$unidade', valor_venda='$valor_venda', valor_producao='$valor_producao', maximo='$maximo', minimo='$minimo', observacao='$observacao' WHERE id = '$id'";
 
 $atualizar = mysqli_query($conexao, $sql); 
@@ -31,3 +32,4 @@ if ($atualizar) {
 }
 
 ?> 
+

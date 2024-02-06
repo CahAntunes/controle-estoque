@@ -13,7 +13,6 @@ session_start();
     <script src="/Estoque/js/jquery-3.7.1.min.js"></script>
     <script src="/Estoque/js/jquery.mask.js"></script>
     <link rel="stylesheet" href="/Estoque/CSS/bootstrap.css">
-    <link rel="stylesheet" href="/Estoque/CSS/milenials.css">
     <title>CRUD - Cadastrar</title>
 </head>
 

@@ -1,7 +1,7 @@
 <?php
 
 session_start();
-include_once("conexao.php");
+include_once("../conexao.php");
 $id = filter_input(INPUT_GET, 'id');
 
 ?>
@@ -64,12 +64,12 @@ $id = filter_input(INPUT_GET, 'id');
                 $minimo = $array['minimo'];
                 $observacao = $array['observacao'];
             ?>
-                
+
                 <input type="text" name="id" value="<?php echo $id; ?>" style="display: none;">
 
                 <div class="col-md-4">
                     <label>Nome:</label>
-                    <input class="form-control" type="text" name="nome" value="<?php echo $nome; ?>" autocomplete="off" maxlength="40" required>
+                    <input class="form-control letra" type="text" name="nome" value="<?php echo $nome; ?>" autocomplete="off" maxlength="40" required>
                 </div>
 
                 <div class="col-md-4">
@@ -79,12 +79,12 @@ $id = filter_input(INPUT_GET, 'id');
 
                 <div class="col-md-3">
                     <label>Código:</label>
-                    <input class="form-control" type="text" name="codigo" value="<?php echo $codigo; ?>" autocomplete="off" maxlength="5" required>
+                    <input class="form-control numero" type="text" name="codigo" value="<?php echo $codigo; ?>" autocomplete="off" maxlength="5" required>
                 </div>
 
                 <div class="col-md-4">
                     <label>Lead Time:</label>
-                    <input class="form-control" type="text" name="lead_time" value="<?php echo $lead_time; ?>" autocomplete="off" maxlength="3">
+                    <input class="form-control numero" type="text" name="lead_time" value="<?php echo $lead_time; ?>" autocomplete="off" maxlength="3">
                 </div>
 
                 <div class="col-md-4">
@@ -137,17 +137,17 @@ $id = filter_input(INPUT_GET, 'id');
 
                 <div class="col-md-4">
                     <label>Qtde:</label>
-                    <input class="form-control" type="text" name="qtde" value="<?php echo $qtde; ?>" autocomplete="off" maxlength="4">
+                    <input class="form-control numero" type="text" name="qtde" value="<?php echo $qtde; ?>" autocomplete="off" maxlength="4">
                 </div>
 
                 <div class="col-md-4">
                     <label>Minímo:</label>
-                    <input class="form-control" type="text" name="minimo" value="<?php echo $minimo; ?>" autocomplete="off" required>
+                    <input class="form-control numero" type="text" name="minimo" value="<?php echo $minimo; ?>" autocomplete="off" required>
                 </div>
 
                 <div class="col-md-4">
                     <label>Máximo: </label>
-                    <input class="form-control" type="text" name="maximo" value="<?php echo $maximo; ?>" autocomplete="off" required>
+                    <input class="form-control numero" type="text" name="maximo" value="<?php echo $maximo; ?>" autocomplete="off" required>
                 </div>
 
                 <div class="col-md-6">
@@ -158,7 +158,7 @@ $id = filter_input(INPUT_GET, 'id');
                 </div>
 
                 <div class="col-12">
-                    <input type="submit" class="btn btn-primary" value="Salvar" id="salvar"> 
+                    <input type="submit" class="btn btn-primary" value="Salvar" id="salvar">
                 </div>
                 <!-- <div class="col-6">
                     <input type="submit" class="btn btn-primary" value="cancelar" id="cancelar"> 
@@ -177,6 +177,18 @@ $id = filter_input(INPUT_GET, 'id');
         });
         $('#valor_producao').mask("#.##0,00", {
             reverse: true
+        });
+        $(".numero").mask('0#', {
+            maxlength: false
+        });
+        $(".letra").mask("#", {
+            maxlength: false,
+            translation: {
+                "#": {
+                    pattern: /[A-zÀ-ÿ\s]/,
+                    recursive: true
+                },
+            },
         });
     </script>
 
