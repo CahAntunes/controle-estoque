@@ -2,7 +2,6 @@
 session_start();
 include_once("../conexao.php");
 $produto_id = filter_input(INPUT_GET, 'produto_id');
-var_dump($produto_id);
 ?>
 
 <!DOCTYPE html>
@@ -61,11 +60,21 @@ var_dump($produto_id);
             ?>
             <?php 
             }
-            echo $nome . " - " . $codigo;
             ?>
 
             <h1>Adicionando movimentações</h1>
-            <input type="text" name="produto_id" value=<?php echo $produto_id ?>>
+            <input type="hidden" name="produto_id" value=<?php echo $produto_id ?>>
+            <div class="col-md-4">
+                <label>Código:</label>
+                <input class="form-control" type="text" value=<?php echo $codigo ?> disabled>
+            </div>
+
+            <div class="col-md-4">
+                <label>Nome:</label>
+                <input class="form-control" type="text"  value=<?php echo $nome ?> disabled>
+            </div>
+
+
             <div class="col-md-4">
                 <label>Tipo:</label>
                 <select name="tipo" class="form-select campoSelect" required>
@@ -96,8 +105,7 @@ var_dump($produto_id);
                 <label>Responsável:</label>
                 <input class="form-control" type="text" name="responsavel" placeholder="Digite o nome do responsável pela movimentação" maxlength="30" required>
             </div>
-
-            <div class="col-md-8">
+            <div class="col-lg-12" style="text-align: right;">
                 <button type="submit" class="btn btn-primary" value="Adicionar" id="adicionar">Adicionar</button>
             </div>
         </form>

@@ -6,6 +6,7 @@ if (isset($_GET['id'])) {
 
     $sql = "DELETE FROM produtos WHERE id = $idProduto";
     $resultado = mysqli_query($conexao, $sql);
+    // var_dump($conexao);
 
     if ($resultado) {
         echo "<script>alert('Produto excluído com sucesso!');";

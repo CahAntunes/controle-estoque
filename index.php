@@ -21,7 +21,7 @@
       <div class="card-body">
         <h5 class="card-title">Cadastrar Produtos</h5>
         <p class="card-text">Opção para realizar o cadastro de novos produtos ao estoque.</p>
-        <a href="cadastrar_produtos.php" class="btn btn-primary">Cadastrar Produto</a>
+        <a href="produtos/cadastrar_produtos.php" class="btn btn-primary">Cadastrar Produto</a>
       </div>
     </div>
   </div>
@@ -31,7 +31,7 @@
       <div class="card-body">
         <h5 class="card-title">Pesquisar</h5>
         <p class="card-text">Opção para pesquisar, editar e excluir produtos do estoque.</p>
-        <a href="pesquisar_produtos.php" class="btn btn-primary">Buscar</a>
+        <a href="produtos/pesquisar_produtos.php" class="btn btn-primary">Buscar</a>
       </div>
     </div>
   </div>
