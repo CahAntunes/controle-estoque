@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Tempo de geração: 05/03/2024 às 07:51
--- Versão do servidor: 8.0.36-0ubuntu0.20.04.1
--- Versão do PHP: 7.4.3-4ubuntu2.20
+-- Tempo de geração: 26/01/2024 às 07:45
+-- Versão do servidor: 8.0.35-0ubuntu0.20.04.1
+-- Versão do PHP: 7.4.3-4ubuntu2.19
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -43,10 +43,15 @@ CREATE TABLE `produtos` (
   `valor_producao` double DEFAULT NULL,
   `maximo` int NOT NULL,
   `minimo` int NOT NULL,
-  `observacao` text,
-  `imagem` varchar(100) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
-  `pdf` varchar(100) DEFAULT NULL
+  `observacao` text
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+
+--
+-- Despejando dados para a tabela `produtos`
+--
+
+INSERT INTO `produtos` (`id`, `nome`, `codigo`, `lead_time`, `qtde`, `funcionario`, `descricao`, `frequencia`, `data`, `unidade`, `valor_venda`, `valor_producao`, `maximo`, `minimo`, `observacao`) VALUES
+(1, 'Pão', '001', 20, 10, 'Antonio', 'Pão de leite', 'semanal', '2024-01-25', 'un', 0.5, 0.1, 20, 10, NULL);
 
 -- --------------------------------------------------------
 
@@ -57,14 +62,19 @@ CREATE TABLE `produtos` (
 CREATE TABLE `produtos_movimentacoes` (
   `id` int NOT NULL,
   `produto_id` int NOT NULL,
-  `tipo` enum('entrada','saida') NOT NULL DEFAULT 'entrada',
-  `status` enum('compra','venda','devolucao','outros') CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL DEFAULT 'compra',
-  `estoque` int DEFAULT NULL,
+  `tipo` enum('entrada','saida','troca','devolucao','outros') NOT NULL DEFAULT 'entrada',
   `responsavel` varchar(30) NOT NULL,
   `cliente` varchar(30) DEFAULT NULL,
-  `qtde_mov` int NOT NULL,
+  `qtde` int NOT NULL,
   `data` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+
+--
+-- Despejando dados para a tabela `produtos_movimentacoes`
+--
+
+INSERT INTO `produtos_movimentacoes` (`id`, `produto_id`, `tipo`, `responsavel`, `cliente`, `qtde`, `data`) VALUES
+(1, 1, 'entrada', 'Camila', 'Jeniffer', 10, '2024-01-25');
 
 --
 -- Índices de tabelas apagadas
@@ -91,13 +101,13 @@ ALTER TABLE `produtos_movimentacoes`
 -- AUTO_INCREMENT de tabela `produtos`
 --
 ALTER TABLE `produtos`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=127;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de tabela `produtos_movimentacoes`
 --
 ALTER TABLE `produtos_movimentacoes`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=266;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Restrições para dumps de tabelas
@@ -107,7 +117,7 @@ ALTER TABLE `produtos_movimentacoes`
 -- Restrições para tabelas `produtos_movimentacoes`
 --
 ALTER TABLE `produtos_movimentacoes`
-  ADD CONSTRAINT `fk_produtos_movimentacoes_produtos` FOREIGN KEY (`produto_id`) REFERENCES `produtos` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `fk_produtos_movimentacoes_produtos` FOREIGN KEY (`produto_id`) REFERENCES `produtos` (`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

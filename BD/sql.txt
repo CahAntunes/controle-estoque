@@ -46,3 +46,36 @@ ALTER TABLE `produtos` CHANGE `coddigo` `codigo` VARCHAR(5) NOT NULL;
 
 ALTER TABLE `produtos` CHANGE `frequencia` `frequencia` ENUM('diario','semanal','mensal','trimestral','semestral','anual') 
 CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL DEFAULT 'diario';
+
+
+
+08/02/2024
+
+--Alterado nome do atributo TIPO para STATUS
+
+ALTER TABLE `produtos_movimentacoes` CHANGE `tipo` `status` ENUM('entrada','saida','troca','devolucao','outros') CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL DEFAULT 'entrada';
+
+
+--Alterado itens do atributo STATUS
+ALTER TABLE `produtos_movimentacoes` CHANGE `status` `status` ENUM('compra','venda','devolucao','outros') CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL DEFAULT 'compra';
+obs: ante de executar o sql delete todas as movimentações do banco
+
+--Criando atributo TIPO
+ALTER TABLE `produtos_movimentacoes` ADD `tipo` ENUM('entrada','saida') NOT NULL DEFAULT 'entrada' AFTER `produto_id`;
+
+-- Criando atribudo estoque (para trazer estoque atual)
+ALTER TABLE `produtos_movimentacoes` ADD `estoque` INT NOT NULL AFTER `status`;
+
+21/02/2024
+
+-- Adicionando atributo imagem na tabela produtos
+
+ALTER TABLE `produtos` ADD `imagem` VARCHAR(100) NOT NULL AFTER `observacao`;
+
+
+
+23/02/24
+
+-- Criando Atributo PDF ---
+
+ALTER TABLE `produtos` ADD `pdf` VARCHAR(100) NULL AFTER `imagem`;
