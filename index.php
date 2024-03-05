@@ -9,6 +9,31 @@
 
 
     <title>Cadastro Produtos</title>
+
+    <style>
+      body {
+        background: url(https://cdn.pixabay.com/photo/2019/02/25/17/36/mockup-4020150_1280.jpg) no-repeat ;
+        background-size: cover;
+        height: 60vh;
+      }
+
+      .card {
+        background: none;
+        color: white;
+        font-size: 20px;
+        border-color: white;
+      }
+
+      .btn{
+        background-color:#ff7a30;
+        border-color: #e65f1f;
+      }
+
+      .btn:hover {
+        background-color:#d75413;
+        border-color: #d75413;
+      }
+    </style>
 </head>
 
 <body>
@@ -20,7 +45,9 @@
     <div class="card" style="width: 18rem;">
       <div class="card-body">
         <h5 class="card-title">Cadastrar Produtos</h5>
+        <br>
         <p class="card-text">Opção para realizar o cadastro de novos produtos ao estoque.</p>
+        <br>
         <a href="produtos/cadastrar_produtos.php" class="btn btn-primary">Cadastrar Produto</a>
       </div>
     </div>
@@ -30,22 +57,12 @@
     <div class="card" style="width: 18rem;">
       <div class="card-body">
         <h5 class="card-title">Pesquisar</h5>
-        <p class="card-text">Opção para pesquisar, editar e excluir produtos do estoque.</p>
+        <p class="card-text">Opção para pesquisar, editar e excluir produtos do estoque e para realizar movimentações de entrada e saída.</p>
         <a href="produtos/pesquisar_produtos.php" class="btn btn-primary">Buscar</a>
       </div>
     </div>
   </div>
 
-  <div class="col-sm-3">
-    <div class="card" style="width: 18rem;">
-      <div class="card-body">
-        <h5 class="card-title">Movimentação</h5>
-        <p class="card-text">Opção para movimentação de entrada e saída no estoque.</p>
-        <a href="movimentacoes/add_movimentacoes.php"  class="btn btn-primary">Movimentação</a>
-      </div>
-    </div>
-  </div>
-</div>
 
 </div> 
 
