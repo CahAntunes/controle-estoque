@@ -8,8 +8,16 @@ $dbname = "Estoque_prod";
 
 $conexao = mysqli_connect($servidor, $usuario, $senha, $dbname);
 
-if(!$conexao){
-    print "Falha na conexão com o Banco de Dados";
-}
+
+function validarTipo($tipo) {
+    $tiposValidos = ['entrada', 'saida'];
+    return in_array($tipo, $tiposValidos);
+  }
+
+  function validarStatus($status) {
+    $statusValidos = ['compra', 'venda','devolucao', 'outros'];
+    return in_array($status, $statusValidos);
+  }
+
 
 ?>
