@@ -20,15 +20,38 @@ $registro = mysqli_num_rows($consulta);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/Estoque/CSS/bootstrap.css">
     <title>Sistema de Cadastro de Produtos</title>
+
+    <style>
+        .link {
+            color: black;
+        }
+
+        .produto {
+            display: inline-block;
+            position: relative;
+        }
+
+        .produto img {
+            position: absolute;
+            margin-top: -40px;
+            left: 0;
+            display: none;
+            width: 120px;
+            height: auto;
+            border-radius: 5%;
+            border: 2px solid black;
+        }
+    </style>
+
 </head>
 
 <body>
 
-    <nav class="navbar navbar-expand-lg" style="background-color: #ced4da;">
+    <nav class="navbar navbar-expand-lg" style="background-color: #CFC0A7;">
 
         <div class="row" style="padding: 10px;">
             <form class="container-fluid justify-content-start" style="width: 200px;">
-                <a href="../index.php" class="btn btn-primary"> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-house-door-fill" viewBox="0 0 16 16">
+                <a href="../index.php" class="btn btn-primary" style="background-color: #d75413; border-color:#d75413;"> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-house-door-fill" viewBox="0 0 16 16">
                         <path d="M6.5 14.5v-3.505c0-.245.25-.495.5-.495h2c.25 0 .5.25.5.5v3.5a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5" />
                     </svg> Menu </a>
             </form>
@@ -58,10 +81,6 @@ $registro = mysqli_num_rows($consulta);
     <section style="padding: 2%; ">
 
         <?php
-
-        // print "Resultado da pesquisa com a palavra <strong>$filtro</strong><br><br>";
-
-        // print "$registro registros encontrados.";
 
         print "<table class='table table-striped table-hover table-bordered'>";
         print "<thead>";
@@ -101,18 +120,31 @@ $registro = mysqli_num_rows($consulta);
             $maximo = $exibirRegistro[12];
             $minimo = $exibirRegistro[13];
             $observacao = $exibirRegistro[14];
+            $imagem = $exibirRegistro[15];
 
-            // print "<article><hr>";
             print "<tr>";
             print "<th>$id</th>";
-            print "<th>$nome</th>";
+
+
+
+            print "<th> <a href='view.php?id=$id' style='text-decoration: none;' class='link'> $nome</a>"
+
+        ?>
+
+            <div class="produto" onmouseout="esconderImagem(this)" onmouseover="mostrarImagem(this)">
+                <img src="<?php echo isset($imagem) ? $imagem : '../upload/nicolas.jpg'; ?>" alt='Imagem do produto'>
+            </div>
+
+            </th>
+
+        <?php
             print "<th>$codigo</th>";
             print "<th>$lead_time</th>";
             print "<th>$qtde</th>";
             print "<th>$funcionario</th>";
             print "<th>$descricao</th>";
             print "<th>$frequencia</th>";
-            print "<th>$data</th>";
+            print "<th>" . date("d/m/Y", strtotime($data)) . "</th>";
             print "<th>$unidade</th>";
             print "<th>$valor_producao</th>";
             print "<th>$valor_venda</th>";
@@ -134,9 +166,9 @@ $registro = mysqli_num_rows($consulta);
             print "&nbsp;";
             print "&nbsp;";
             print "&nbsp;";
-            print "<a class='btn btn-info btn-sm btn-visualizar' href='view.php?id=$id' role='button'><svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-eye' viewBox='0 0 16 16'>
+            print "<a class='btn btn-info btn-sm btn-visualizar' href='view.php?id=$id'
+            role='button'><svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-eye' viewBox='0 0 16 16'>
                 <path d='M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8M1.173 8a13 13 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5s3.879 1.168 5.168 2.457A13 13 0 0 1 14.828 8q-.086.13-.195.288c-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5s-3.879-1.168-5.168-2.457A13 13 0 0 1 1.172 8z'/><path d='M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5M4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0'/></svg>Visualizar</a>";
-
             print "&nbsp;";
             print "&nbsp;";
             print "&nbsp;";
@@ -145,7 +177,6 @@ $registro = mysqli_num_rows($consulta);
             print "</tr>";
 
             $idProduto = $exibirRegistro['id'];
-            // echo "<a href='index.php?copiar=$idProduto' class='btn-copiar'>Copiar</a>";
 
             print "</article>";
         }
@@ -155,7 +186,6 @@ $registro = mysqli_num_rows($consulta);
         ?>
 
     </section>
-    <!-- </div> -->
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
@@ -163,6 +193,29 @@ $registro = mysqli_num_rows($consulta);
         function confirmarExclusao() {
             return confirm("Deseja mesmo excluir esse produto?");
         }
+
+
+        function mostrarImagem(element) {
+            var imagem = element.querySelector("img");
+            imagem.style.display = "block";
+        }
+
+        function esconderImagem(element) {
+            var imagem = element.querySelector("img");
+            imagem.style.display = "none";
+        }
+
+        var links = document.querySelectorAll(".link");
+        links.forEach(function(link) {
+            link.addEventListener("mouseover", function() {
+                var produto = this.nextElementSibling;
+                mostrarImagem(produto);
+            });
+            link.addEventListener("mouseout", function() {
+                var produto = this.nextElementSibling;
+                esconderImagem(produto);
+            });
+        });
     </script>
 
 </body>
